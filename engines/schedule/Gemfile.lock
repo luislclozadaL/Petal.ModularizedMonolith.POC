@@ -1,11 +1,5 @@
 PATH
-  remote: engines/patients
-  specs:
-    patients (0.1.0)
-      rails (~> 5.1.7)
-
-PATH
-  remote: engines/schedule
+  remote: .
   specs:
     schedule (0.1.0)
       rails (~> 5.1.7)
@@ -52,7 +46,6 @@ GEM
       tzinfo (~> 1.1)
     arel (8.0.0)
     builder (3.2.4)
-    byebug (11.0.1)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
     erubi (1.10.0)
@@ -73,7 +66,6 @@ GEM
     nio4r (2.5.2)
     nokogiri (1.10.10-x86-mingw32)
       mini_portile2 (~> 2.4.0)
-    puma (3.12.6)
     rack (2.2.3)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -122,11 +114,7 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
-  byebug
   mysql2
-  patients!
-  puma (~> 3.7)
-  rails (~> 5.1.3)
   schedule!
   tzinfo-data
 

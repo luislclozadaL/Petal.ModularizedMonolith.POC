@@ -10,15 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20220502035521) do
+ActiveRecord::Schema.define(version: 20220502033620) do
 
   create_table "patients_patients", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.string "first_name"
     t.string "last_name"
-    t.string "active"
-    t.string "boolean"
-    t.string "hin"
-    t.string "integer"
+    t.boolean "active"
+    t.integer "hin"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
