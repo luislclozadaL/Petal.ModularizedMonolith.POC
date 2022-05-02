@@ -4,11 +4,8 @@ class CreatePatientsPatients < ActiveRecord::Migration[5.1]
     create_table :patients_patients do |t|
       t.string :first_name
       t.string :last_name
-      t.string :active
-      t.string :boolean
+      t.boolean :active
       t.string :hin
-      t.string :integer
-
       t.timestamps
     end
   end
