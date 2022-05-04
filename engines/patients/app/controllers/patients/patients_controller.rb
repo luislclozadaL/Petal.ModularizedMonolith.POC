@@ -1,22 +1,27 @@
 module Patients
     class PatientsController < ApplicationController
+        skip_before_action :verify_authenticity_token
 
         def index
-            patients = Patient.order('created_at DESC');
+            command = GetAllPatientsQuery.new
+            patients = command.run
             render json: { data: patients }, status: :ok
         end
 
         def show
-            patient = Patient.find(params[:id]);
+            command = GetPatientByIdQuery.new(params.to_enum.to_h)
+            patient = command.run
             render json: { status: 'Patient Retrieved Successfully', message: 'Loaded patient', data: patient }, status: :ok
         end   
         
         def create
-            patient = Patient.new(article_params)
-            if patient.save
-                render json: { status: 'Patient Saved Successfully', message: 'patient saved', data: patient }, status: :ok
+            command = CreatePatientCommand.new(params.to_enum.to_h)
+            result = command.run
+
+            if result.succeded
+                render json: { status: 'Patient Saved Successfully', message: 'patient saved', data: result.object }, status: :ok
             else
-                render json: { status: 'Error Saving Patient', message: 'patient not saved', data: patient.errors}, status: :unprocessable_entity
+                render json: { status: 'Error Saving Patient', message: 'patient not saved', data: result.object}, status: :unprocessable_entity
             end
         end
 
@@ -38,7 +43,7 @@ module Patients
         end
 
         private def patient_params 
-            params.permit(:header, :body, :revision)
+            params.permit(:first_name, :last_name, :hin, :active)
         end
 
         private def update_patient_valid_params
