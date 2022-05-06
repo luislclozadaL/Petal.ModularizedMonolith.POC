@@ -1,4 +1,5 @@
 # Command for CreatePatientCommand, (Attributes)
+
 class CreatePatient < CommandQueryBase
   def initialize(first_name, last_name, hin, active=true)
     @first_name = first_name

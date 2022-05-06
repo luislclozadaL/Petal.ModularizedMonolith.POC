@@ -37,5 +37,8 @@ module PracticeApi
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
     config.autoload_paths += %W(#{Rails.root}/common)
+    config.logger = Logger.new(STDOUT)
+    Rails.logger = Logger.new(STDOUT)
+    config.log_level = :debug
   end
 end
