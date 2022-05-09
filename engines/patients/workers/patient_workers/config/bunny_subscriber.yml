@@ -1,0 +1,21 @@
+default: &default
+  host: 127.0.0.1
+  port: 5672
+  user: admin
+  pass: password
+  vhost: /development
+  heartbeat: 20
+  consumer_classes: 
+    - PatientCertificationHandler
+development:
+  <<: *default
+  workers: 2
+
+production:
+  <<: *default
+  host: some.host
+  vhost: /other
+  user: <%= ENV['user_in_env'] %>
+  pass: <%= ENV['password_in_env'] %>
+  workers: 5
+  daemonize: true

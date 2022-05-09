@@ -1,0 +1,53 @@
+begin
+  require 'bundler/setup'
+rescue LoadError
+  puts 'You must `gem install bundler` and `bundle install` to run rake tasks'
+end
+
+require 'rdoc/task'
+
+RDoc::Task.new(:rdoc) do |rdoc|
+  rdoc.rdoc_dir = 'rdoc'
+  rdoc.title    = 'PatientWorkers'
+  rdoc.options << '--line-numbers'
+  rdoc.rdoc_files.include('README.md')
+  rdoc.rdoc_files.include('lib/**/*.rb')
+end
+
+APP_RAKEFILE = File.expand_path("../test/dummy/Rakefile", __FILE__)
+load 'rails/tasks/engine.rake'
+load 'rails/tasks/statistics.rake'
+
+require 'bundler/gem_tasks'
+require 'rake/testtask'
+
+Rake::TestTask.new(:test) do |t|
+  t.libs << 'test'
+  t.pattern = 'test/**/*_test.rb'
+  t.verbose = false
+end
+
+task default: :test
+
+require 'sneakers/tasks'
+namespace :rabbitmq do
+  desc "Setup routing"
+  task :setup do
+
+    require "bunny"
+
+    #Setup connection
+    @connection = Bunny.new('amqp://admin:password@localhost:5672/development')
+    @connection.start
+    @active_channel = @connection.create_channel
+
+    #Host
+    channel_host = @active_channel.topic("dev_exchange", :auto_delete => false, :durable => true)
+    
+    #Queue Setup
+    @queue = @active_channel.queue("patient_queue", :auto_delete => false, :durable => true)
+    @queue.bind("dev_exchange")
+
+    @connection.close
+  end
+end
