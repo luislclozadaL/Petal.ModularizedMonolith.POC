@@ -2,12 +2,18 @@ module Schedule
     class AvailabilitiesController < ApplicationController 
 
         def index
-            patients_facade = PatientsOutboundFacade.new
-            all_patients = patients_facade.get_all_patients()
-            puts "patients #{all_patients.count}"
-            availabilities = Availability.order('Created_at DESC');
+            query = GetAvailabilitiesQuery.new
+            availabilities = query.invoke
             render json: { data: availabilities }, status: :ok
-        end
 
+        end
+        
+        def show
+            command = DoSomethingCommand.new(params.to_enum.to_h)
+
+            result = command.invoke()
+
+            render json: { data: result }, status: :ok
+        end 
     end
 end

@@ -14,7 +14,7 @@ class PatientsInboundFacade
     @dictionary = {'PatientsQuery1' => 'GetAllPatientsQuery', 'PatientsQuery2' => 'GetPatientByIdQuery', 'PatientsCommand1' => 'CreatePatientCommand'}
   end
 
-  def run(key, *params)
+  def run(key, params)
     command = @dictionary[key].constantize.new(params)
 
     return command.run

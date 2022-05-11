@@ -9,7 +9,7 @@ class GetPatientByIdQuery < CommandQueryHandlerBase
   end
 
   def run
-    patient = Patients::Patient.find(@attributes.patient_id);
+    patient = Patients::Patient.find_by(id: @attributes.patient_id);
     return patient
   end
 end
