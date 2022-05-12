@@ -5,6 +5,7 @@ class CreatePatientMessage < BaseMessage
         @last_name = last_name
         @hin = hin
         @message_topic = 'patient_event'
+        @message = "A new patient has been created"
     end
 
     def first_name
@@ -19,4 +20,7 @@ class CreatePatientMessage < BaseMessage
         @hin
     end
 
+    def get_queue
+        "patient_queue"
+    end
 end

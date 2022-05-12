@@ -13,11 +13,13 @@ class CreatePatientCommand < CommandQueryHandlerBase
     patient = ::Patients::Patient.new(first_name:@attributes.first_name, last_name:@attributes.last_name, hin:@attributes.hin, active:@attributes.hin)
 
     if patient.save
-      @bus_message = CreatePatientMessage.new(first_name:@attributes.first_name, last_name:@attributes.last_name, hin:@attributes.hin)
-      PetalBus.send_message("patient_queue", @bus_message)
       return CommandQueryHandlerResult.new(true, patient)
     else
       return CommandQueryHandlerResult.new(false,patient.errors)
     end
+  end
+
+  def get_messages
+    [CreatePatientMessage.new(first_name:@attributes.first_name, last_name:@attributes.last_name, hin:@attributes.hin)]
   end
 end

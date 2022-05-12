@@ -19,5 +19,8 @@ class BaseMessage
         @message_identifier
     end
 
+    def get_queue
+        raise 'Queue must be specified by child class'
+    end
 end 
 
