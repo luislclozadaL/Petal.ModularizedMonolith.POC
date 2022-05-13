@@ -1,15 +1,12 @@
-# Query to get a petient by id    
+# CommandQuery to get a patient by id (Attributes)
+  class GetPatientByIdQuery < CommandQueryBase
 
-class GetPatientByIdQuery < CommandQueryHandlerBase
+    def initialize(patient_id)
+      @patient_id = patient_id
+    end
 
-  def initialize(*params)
-    @attributes = GetPatientById.new(params[0]['id'])
-    
-    raise 'Patient ID value is required' unless @attributes.patient_id
+    def patient_id
+      @patient_id
+    end
   end
-
-  def run
-    patient = Patients::Patient.find_by(id: @attributes.patient_id);
-    return patient
-  end
-end
+  

@@ -1,5 +1,5 @@
 # Command for testing purposes
-class DoSomethingCommand < CommandQueryHandlerBase
+class DoSomethingCommandHandler < CommandQueryHandlerBase
   
   def initialize(*params)
     id = params[0]['id']
@@ -15,8 +15,12 @@ class DoSomethingCommand < CommandQueryHandlerBase
 
     puts all_patients.length.to_s + " patients found"
 
-    item = all_patients.find_by(id:10)
 
+    filtered_items = all_patients.where("id > ?", 10) 
+    puts "#{ filtered_items.length.to_s } filtered items"
+
+    item = filtered_items.find_by(id:15)
+    
     puts item.first_name
     puts "did it work?"
 

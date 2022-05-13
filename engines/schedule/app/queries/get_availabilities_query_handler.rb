@@ -1,4 +1,4 @@
-class GetAvailabilitiesQuery < CommandQueryHandlerBase
+class GetAvailabilitiesQueryHandler < CommandQueryHandlerBase
   def initialize(*params)
     # no params required
   end

@@ -1,25 +1,26 @@
-# Command Handler to create a new Patient, Returns an object type CommandQueryHandlerResult
-class CreatePatientCommand < CommandQueryHandlerBase
+# Command for CreatePatientCommand, (Attributes)
 
-  def initialize(*params)
-    @attributes = CreatePatient.new(params[0]['first_name'],params[0]['last_name'], params[0]['hin'],params[0]['active'])
-
-    raise 'Patient First Name is required' unless @attributes.first_name
-    raise 'Patient Last Name is required' unless @attributes.last_name
-    raise 'Patient Hin is required' unless @attributes.hin
+class CreatePatientCommand < CommandQueryBase
+  def initialize(first_name, last_name, hin, active=true)
+    @first_name = first_name
+    @last_name = last_name
+    @hin = hin
+    @active = active
   end
 
-  def run
-    patient = ::Patients::Patient.new(first_name:@attributes.first_name, last_name:@attributes.last_name, hin:@attributes.hin, active:@attributes.hin)
-
-    if patient.save
-      return CommandQueryHandlerResult.new(true, patient)
-    else
-      return CommandQueryHandlerResult.new(false,patient.errors)
-    end
+  def first_name
+    @first_name
   end
 
-  def get_messages
-    [CreatePatientMessage.new(first_name:@attributes.first_name, last_name:@attributes.last_name, hin:@attributes.hin)]
+  def last_name
+    @last_name
+  end
+
+  def hin
+    @hin
+  end
+
+  def active
+    @active
   end
 end

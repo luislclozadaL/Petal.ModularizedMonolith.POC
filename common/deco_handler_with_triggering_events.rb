@@ -21,7 +21,7 @@ class DecoHandlerWithTriggeringEvents
       puts "sending  messages"
       messages.each do |msg|
         puts msg.message
-        PetalBus.send_message(msg)
+        # PetalBus.send_message(msg)
       end
     end
 

@@ -3,15 +3,15 @@ class PatientsInboundFacade
   #################################################################################################################################################################
   # KEY                     # Command  /Query                     # Description                                                                                   #
   #################################################################################################################################################################
-  # PatientsQuery1          GetAllPatientsQuery                   List of all patients                                                                            #
+  # PatientsQuery1          GetAllPatientsQueryHandler            List of all patients                                                                            #
   #################################################################################################################################################################
-  # PatientsQuery2          GetPatientByIdQuery                   Patient By Id                                                                                   #                       
+  # PatientsQuery2          GetPatientByIdQueryHandler            Patient By Id                                                                                   #                       
   #################################################################################################################################################################
-  # PatientsCommand1        CreatePatientCommand                  Create a new Patient                                                                            #
+  # PatientsCommand1        CreatePatientCommandHandler           Create a new Patient                                                                            #
   #################################################################################################################################################################
 
   def initialize
-    @dictionary = {'PatientsQuery1' => 'GetAllPatientsQuery', 'PatientsQuery2' => 'GetPatientByIdQuery', 'PatientsCommand1' => 'CreatePatientCommand'}
+    @dictionary = {'PatientsQuery1' => 'GetAllPatientsQueryHandler', 'PatientsQuery2' => 'GetPatientByIdQueryHandler', 'PatientsCommand1' => 'CreatePatientCommandHandler'}
   end
 
   def run(key, params)

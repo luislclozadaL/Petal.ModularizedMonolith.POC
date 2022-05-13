@@ -1,20 +1,16 @@
-# Command Handler to set hin for patient, Returns an object type CommandQueryHandlerResult
+# Command for Setting hin value to patient, (Attributes)
 
-class SetPatientHinCommand < CommandQueryHandlerBase
-
-  def initialize(*params)
-    @attributes = SetPatientHin.new(params[0]['id'], params[0]['hin'])
-
-    raise 'Patient ID is required' unless @attributes.patient_id
-    raise 'Patient hin is required' unless @attributes.hin
+class SetPatientHinCommand < CommandQueryBase
+  def initialize(patient_id, hin)
+    @patient_id = patient_id
+    @hin = hin
   end
 
-  def run
-    patient = ::Patients::Patient.find(@attributes.patient_id)
-    if patient.update(hin:@attributes.hin)
-      return CommandQueryHandlerResult.new(true, patient)
-    else
-      return CommandQueryHandlerResult.new(false, patient.errors)
-    end
+  def patient_id
+    @patient_id
+  end
+
+  def hin
+    @hin
   end
 end

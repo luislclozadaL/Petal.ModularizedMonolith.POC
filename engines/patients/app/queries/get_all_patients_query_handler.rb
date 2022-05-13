@@ -1,5 +1,5 @@
 # Query to get all patients
-class GetAllPatientsQuery < CommandQueryHandlerBase
+class GetAllPatientsQueryHandler < CommandQueryHandlerBase
   def initialize(*params)
     # do nothing
     # this query does not require params.
