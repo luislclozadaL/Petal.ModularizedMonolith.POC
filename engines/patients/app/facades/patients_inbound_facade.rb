@@ -9,9 +9,14 @@ class PatientsInboundFacade
   #################################################################################################################################################################
   # PatientsCommand1        CreatePatientCommandHandler           Create a new Patient                                                                            #
   #################################################################################################################################################################
+  # PatientsCommand2        DestroyPatientCommandHandler          Destroy a Patient                                                                            #
+  #################################################################################################################################################################
 
   def initialize
-    @dictionary = {'PatientsQuery1' => 'GetAllPatientsQueryHandler', 'PatientsQuery2' => 'GetPatientByIdQueryHandler', 'PatientsCommand1' => 'CreatePatientCommandHandler'}
+    @dictionary = { 'PatientsQuery1' => 'GetAllPatientsQueryHandler', 
+                    'PatientsQuery2' => 'GetPatientByIdQueryHandler', 
+                    'PatientsCommand1' => 'CreatePatientCommandHandler', 
+                    'PatientsCommand2' => 'DestroyPatientCommandHandler'}
   end
 
   def run(key, params)
