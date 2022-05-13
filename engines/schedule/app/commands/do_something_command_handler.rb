@@ -13,16 +13,16 @@ class DoSomethingCommandHandler < CommandQueryHandlerBase
     patients_facade = PatientsOutboundFacade.new
     all_patients = patients_facade.get_all_patients()
 
-    puts all_patients.length.to_s + " patients found"
+    logger.warn all_patients.length.to_s + " patients found"
 
 
     filtered_items = all_patients.where("id > ?", 10) 
-    puts "#{ filtered_items.length.to_s } filtered items"
+    logger.warn "#{ filtered_items.length.to_s } filtered items"
 
     item = filtered_items.find_by(id:15)
     
-    puts item.first_name
-    puts "did it work?"
+    logger.warn item.first_name
+    logger.warn  "did it work?"
 
     # try to get specific information 
     patients_facade = PatientsOutboundFacade.new
@@ -32,5 +32,9 @@ class DoSomethingCommandHandler < CommandQueryHandlerBase
 
     return "Patient found, information has been retrieved from outside domain" if patient
     return "Patient not found but information has been retrieved from outisde domain"
+  end
+
+  def logger
+    PocLogger.new
   end
 end

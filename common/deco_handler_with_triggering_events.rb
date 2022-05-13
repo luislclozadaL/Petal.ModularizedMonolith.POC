@@ -9,22 +9,26 @@ class DecoHandlerWithTriggeringEvents
 
   def run
     # get any messages to be sent
-    puts "retrieves messages to be sent for #{ @klass }"
+    logger.info "retrieving messages to be sent for #{ @klass } ..."
     messages = @get_messages.call()
-    puts "#{ messages.length } message(s) have been found attached to #{@klass} "
+    logger.info "#{ messages.length } message(s) have been found attached to #{@klass} "
     
     #execute command handler
     command_result = @run.call()
 
     # send messages
     if messages.any?
-      puts "sending  messages"
+      logger.info "sending  messages ..."
       messages.each do |msg|
-        puts msg.message
+        logger.warn msg.message
         # PetalBus.send_message(msg)
       end
     end
 
     return command_result
+  end
+
+  def logger
+    PocLogger.new
   end
 end

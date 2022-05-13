@@ -20,6 +20,6 @@ class DecoHandlerWithLogs
   end
 
   def logger
-    Rails.logger
+    PocLogger.new
   end
 end
