@@ -21,7 +21,7 @@ class DecoHandlerWithTriggeringEvents
       logger.info "sending  messages ..."
       messages.each do |msg|
         logger.warn msg.message
-        # PetalBus.send_message(msg)
+        PetalBus.send_message(msg)
       end
     end
 
