@@ -1,4 +1,4 @@
-class CreatePatientMessage < BaseMessage
+class CreatedPatientMessage < BaseMessage
 
     def initialize(first_name = nil, last_name = nil, hin = nil)
         @first_name = first_name

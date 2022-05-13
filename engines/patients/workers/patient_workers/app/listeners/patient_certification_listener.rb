@@ -1,4 +1,4 @@
-class PatientCertificationWorker
+class PatientCertificationListener
     include Sneakers::Worker
 
     QUEUE_NAME = 'patient_queue'
