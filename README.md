@@ -22,12 +22,20 @@ This is a small project to implement and demonstrate some key concepts that we n
 ## Setup
 
 ## Configuration
+
+### System dependencies
+
+  * Rails (5.1.3 -> 5.1.7)
+  * MySql
+  * RabbitMQ
+  * Bunny
+  * Sneakers
+
 ### Database creation
 
 1. run `rails db:create` (uses user `root` with password `password`)
 2. run `rails db:migrate`
 3. run `rails s`
-* System dependencies
 
 ### Install RabbitMQ, create exchange, queue and bindings and run workers.
 
