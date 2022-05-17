@@ -1,6 +1,7 @@
-# README
+# Rails Modularized Monolith POC
 
 ## Description
+
 This is a small project to implement and demonstrate some key concepts that we needed for our goal of isolating a single domain from its monolithic parent app.
 
 <img width="1045" alt="image" src="https://user-images.githubusercontent.com/5014037/168661421-bd33c596-04e0-4ad1-9b7d-19827913dac2.png">
@@ -20,8 +21,6 @@ This is a small project to implement and demonstrate some key concepts that we n
 <img width="1222" alt="image" src="https://user-images.githubusercontent.com/5014037/168662251-76fe2684-fe68-40a5-bc33-03f1151f08ea.png">
 
 ## Setup
-
-## Configuration
 
 ### System dependencies
 
