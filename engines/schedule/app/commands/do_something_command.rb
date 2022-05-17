@@ -1,4 +1,4 @@
-class DoSomething < CommandQueryBase
+class DoSomethingCommand < CommandQueryBase
 
   def initialize(availability_id, patient_id)
     @availability_id = availability_id

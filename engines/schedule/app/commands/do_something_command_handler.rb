@@ -3,7 +3,7 @@ class DoSomethingCommandHandler < CommandQueryHandlerBase
   
   def initialize(*params)
     id = params[0]['id']
-    @attributes = DoSomething.new(id,id)
+    @attributes = DoSomethingCommand.new(id,id)
 
     raise 'availability id is required' unless @attributes.availability_id
   end
