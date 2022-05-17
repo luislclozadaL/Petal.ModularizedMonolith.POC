@@ -1,7 +1,7 @@
 class PatientCertificationListener
     include Sneakers::Worker
 
-    QUEUE_NAME = 'patient_queue'
+    QUEUE_NAME = 'patient_created_queue'
     from_queue QUEUE_NAME, env: nil
 
     def work(msg)

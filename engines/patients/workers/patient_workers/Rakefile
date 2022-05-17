@@ -45,8 +45,14 @@ namespace :rabbitmq do
     channel_host = @active_channel.topic("dev_exchange", :auto_delete => false, :durable => true)
     
     #Queue Setup
-    @queue = @active_channel.queue("patient_queue", :auto_delete => false, :durable => true)
-    @queue.bind("dev_exchange")
+    @queue = @active_channel.queue("patient_created_queue", :auto_delete => false, :durable => true)
+
+    #***********************************************************************************************************
+    #the rounting key is optional, it is required when we need to route specific messages to an specific queue. 
+    #For scenarios with message delivery to all queues, we need an fanout exchange and no routing keys in queues
+    #***********************************************************************************************************
+    @queue.bind("dev_exchange", :routing_key => "patient_created_event")
+    #***********************************************************************************************************
 
     @connection.close
   end
