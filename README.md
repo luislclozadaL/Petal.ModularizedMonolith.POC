@@ -21,10 +21,17 @@ This is a small project to implement and demonstrate some key concepts that we n
 
 ## Setup
 
-* Ruby version
+## Configuration
+### Database creation
+
+1. run `rails db:create` (uses user `root` with password `password`)
+2. run `rails db:migrate`
+3. run `rails s`
 * System dependencies
 
-Install RabbitMQ 
+### Install RabbitMQ, create exchange, queue and bindings and run workers.
+
+#### Install RabbitMQ
 
 1. `homebrew install rabbitmq`
 2. add `export PATH=$PATH:/usr/local/sbin` to `./.zshrc`
@@ -33,14 +40,15 @@ Install RabbitMQ
 5. `rabbitmqctl add_vhost development` *Creates a default VHost*
 6. `rabbitmqctl set_permissions -p "development" "admin" ".*" ".*" ".*"` *sets the permissions for the newly created use, gives full access*
 7. `rabbitmqctl set_user_tags admin administrator` *allows the new user to have access to the administration frontend tool*
+8. you should have access now to the admin tool at url `http://localhost:15672/`
 
-you should have access now to the admin tool at url `http://localhost:15672/`
+#### Create exchange, queues and bindings with tasks from workers/listeners
 
-* Configuration
-* Database creation
-* Database initialization
-* How to run the test suite
-* Services (job queues, cache servers, search engines, etc.)
-* Deployment instructions
+1. open a terminal on the workers/listeners folder *engines/patients/workers/patient_workers*
+2. run `bundle install`
+3. run `rake rabbitmq:setup` *this will create the exchange and queue required for messaging (these tasks should be part of the main app)*
 
-* ...
+#### Run workers/listeners
+
+1. To run the workers/listeners run `WORKERS=PatientCertificationListener rake sneakers:run `
+
